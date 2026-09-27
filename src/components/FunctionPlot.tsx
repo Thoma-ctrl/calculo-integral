@@ -11,7 +11,8 @@ export type Scales = {
 
 type Props = {
   f: (x: number) => number;
-  g?: (x: number) => number;
+  g?: ((x: number) => number) | undefined;
+
   xMin: number;
   xMax: number;
   height?: number;
