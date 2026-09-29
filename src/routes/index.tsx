@@ -18,6 +18,8 @@ export const Route = createFileRoute("/")({
         content:
           "Visualiza paso a paso 14 módulos de integración con gráficas interactivas y ejemplos resueltos.",
       },
+      { property: "og:type", content: "website" },
+      { name: "twitter:card", content: "summary_large_image" },
     ],
   }),
   component: Index,
