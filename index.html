@@ -1,0 +1,50 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Plataforma educativa de Cálculo Integral con 14 módulos, fórmulas matemáticas y visualizadores interactivos." />
+    <title>Cálculo Integral Interactivo</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.18.9/dist/katex.min.css" crossorigin="anonymous" />
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.18.9/dist/katex.min.js" crossorigin="anonymous"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.18.9/dist/contrib/auto-render.min.js" crossorigin="anonymous" onload="renderMathInElement(document.body, { delimiters: [{ left: '\\[', right: '\\]', display: true }, { left: '\\(', right: '\\)', display: false }] });"></script>
+    <style>
+      :root { color-scheme: light; font-family: system-ui, sans-serif; color: #243047; background: #fbfaf5; }
+      body { margin: 0; }
+      main { width: min(68rem, calc(100% - 2rem)); margin: 0 auto; padding: 3rem 0; }
+      h1 { margin-bottom: 0.5rem; font-family: Georgia, serif; }
+      .formula { overflow-x: auto; padding: 1rem; border: 1px solid #d9d8cf; background: #fff; }
+      ol { display: grid; grid-template-columns: repeat(auto-fit, minmax(15rem, 1fr)); gap: 0.75rem; padding-left: 1.5rem; }
+      a { color: #176878; }
+    </style>
+  </head>
+  <body>
+    <!-- TanStack Start sirve la experiencia React principal; este contenido conserva una alternativa accesible. -->
+    <main id="root">
+      <header>
+        <h1>Cálculo Integral Interactivo</h1>
+        <p>Taller modular con teoría, ejemplos resueltos y visualizadores para estudiar integración.</p>
+        <div class="formula" aria-label="Teorema Fundamental del Cálculo">\[\int_a^b f(x)\,dx = F(b)-F(a)\]</div>
+      </header>
+      <nav aria-label="Navegación de los 14 módulos">
+        <h2>Módulos del taller</h2>
+        <ol>
+          <li><a href="/modulo/1">Sumas de Riemann</a></li>
+          <li><a href="/modulo/2">Regla del Trapecio</a></li>
+          <li><a href="/modulo/3">Regla del Punto Medio</a></li>
+          <li><a href="/modulo/4">Regla de Simpson</a></li>
+          <li><a href="/modulo/5">Integral Definida y Área bajo la Curva</a></li>
+          <li><a href="/modulo/6">Integración Directa</a></li>
+          <li><a href="/modulo/7">Integración por Sustitución</a></li>
+          <li><a href="/modulo/8">Integrales Exponenciales</a></li>
+          <li><a href="/modulo/9">Integrales Logarítmicas</a></li>
+          <li><a href="/modulo/10">Integrales Trigonométricas</a></li>
+          <li><a href="/modulo/11">Trigonométricas Inversas</a></li>
+          <li><a href="/modulo/12">Hiperbólicas Inversas</a></li>
+          <li><a href="/modulo/13">Trinomio ax² + bx + c</a></li>
+          <li><a href="/modulo/14">Integración por Partes</a></li>
+        </ol>
+      </nav>
+    </main>
+  </body>
+</html>
