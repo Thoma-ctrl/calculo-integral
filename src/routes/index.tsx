@@ -1,12 +1,12 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { Lock, MoveRight, Sigma } from "lucide-react";
+import { MoveRight, Sigma } from "lucide-react";
 import { MODULES } from "@/data/modules";
 import { Tex, TexBlock } from "@/components/Tex";
 
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
-      { title: "Cálculo Integral Interactivo — 14 módulos de integración" },
+      { title: "Cálculo Integral Interactivo — 21 módulos de integración" },
       {
         name: "description",
         content:
@@ -16,7 +16,7 @@ export const Route = createFileRoute("/")({
       {
         property: "og:description",
         content:
-          "Visualiza paso a paso 14 módulos de integración con gráficas interactivas y ejemplos resueltos.",
+          "Visualiza paso a paso 21 módulos de integración con gráficas interactivas y ejemplos resueltos.",
       },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
@@ -27,14 +27,13 @@ export const Route = createFileRoute("/")({
 
 function Index() {
   const active = MODULES.filter((m) => m.status === "activo");
-  const locked = MODULES.filter((m) => m.status === "bloqueado");
 
   return (
     <div>
       <header className="grid-paper border-b border-border">
         <div className="mx-auto max-w-6xl px-5 py-14 sm:py-20">
           <div className="inline-flex items-center gap-2 rounded-full border border-border bg-paper px-3 py-1 text-xs font-semibold uppercase tracking-[0.16em] text-primary">
-            <Sigma className="size-3.5" /> Fase 1 activa · Módulos 1 a 6
+            <Sigma className="size-3.5" /> Taller completo · Módulos 1 a 21
           </div>
           <h1 className="mt-5 max-w-3xl text-4xl leading-tight font-semibold sm:text-6xl">
             Cálculo Integral, <span className="text-primary">paso a paso</span> y en movimiento.
@@ -55,7 +54,7 @@ function Index() {
         <section>
           <div className="flex items-baseline justify-between gap-4">
             <h2 className="text-2xl font-semibold">Módulos disponibles</h2>
-            <span className="font-mono text-xs text-muted-foreground">6 / 14</span>
+            <span className="font-mono text-xs text-muted-foreground">21 / 21</span>
           </div>
           <div className="mt-5 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
             {active.map((m) => (
@@ -76,33 +75,6 @@ function Index() {
                   {m.short}
                 </p>
                 <p className="mt-3 text-sm text-foreground/80">{m.description}</p>
-              </Link>
-            ))}
-          </div>
-        </section>
-
-        <section className="mt-14">
-          <div className="flex items-baseline justify-between gap-4">
-            <h2 className="text-2xl font-semibold">Próximamente</h2>
-            <span className="font-mono text-xs text-muted-foreground">Fase 2 / 3</span>
-          </div>
-          <div className="mt-5 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
-            {locked.map((m) => (
-              <Link
-                key={m.id}
-                to="/modulo/$id"
-                params={{ id: String(m.id) }}
-                aria-disabled="true"
-                className="flex flex-col rounded-xl border border-dashed border-border bg-secondary/50 p-4 opacity-80 transition-opacity hover:opacity-100"
-              >
-                <div className="flex items-center justify-between">
-                  <span className="font-mono text-[11px] font-semibold uppercase tracking-widest text-muted-foreground">
-                    Módulo {m.id}
-                  </span>
-                  <Lock className="size-3.5 text-muted-foreground" />
-                </div>
-                <h3 className="mt-2 text-sm font-semibold">{m.title}</h3>
-                <p className="mt-1 text-xs text-muted-foreground">{m.phase}</p>
               </Link>
             ))}
           </div>

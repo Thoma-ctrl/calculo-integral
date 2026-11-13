@@ -86,7 +86,7 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       { property: "og:title", content: "Cálculo Integral Interactivo" },
       {
         property: "og:description",
-        content: "14 módulos de integración con gráficas dinámicas y ejemplos paso a paso.",
+        content: "21 módulos de integración con gráficas dinámicas y ejemplos paso a paso.",
       },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
