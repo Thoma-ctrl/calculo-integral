@@ -2,17 +2,19 @@
 
 Plataforma educativa para estudiar Cálculo Integral mediante teoría breve, notación matemática profesional, ejemplos resueltos paso a paso y visualizadores que reaccionan a los parámetros elegidos por el estudiante.
 
-El taller está organizado en **14 módulos progresivos**. La Fase 1 contiene seis módulos interactivos; las Fases 2 y 3 están preparadas para incorporar métodos de integración más avanzados sin alterar la estructura general de la aplicación.
+El taller está organizado en **21 módulos completos y activos**. Los módulos 1–6 mantienen su implementación original; los módulos 7–21 incorporan cuatro secciones: explicación teórica, fórmulas clave, visualizador interactivo y exactamente dos ejemplos resueltos paso a paso.
 
 ## Contenido del taller
 
 | Fase | Estado | Módulos |
 | --- | --- | --- |
 | Fase 1 | Implementada | 1. Sumas de Riemann; 2. Regla del Trapecio; 3. Regla del Punto Medio; 4. Regla de Simpson; 5. Integral Definida y Área bajo la Curva; 6. Integración Directa |
-| Fase 2 | Planificada | 7. Integración por Sustitución; 8. Integrales Exponenciales; 9. Integrales Logarítmicas; 10. Integrales Trigonométricas |
-| Fase 3 | Planificada | 11. Trigonométricas Inversas; 12. Hiperbólicas Inversas; 13. Trinomio `ax² + bx + c`; 14. Integración por Partes |
+| Fase 2 | Implementada | 7. Integración por Sustitución; 8. Integrales Exponenciales; 9. Integrales Logarítmicas; 10. Integrales Trigonométricas (Básicas y Potencias) |
+| Fase 3 | Implementada | 11. Trigonométricas Inversas; 12. Hiperbólicas Inversas; 13. Trinomio `ax² + bx + c`; 14. Integración por Partes |
 
-Los módulos de la Fase 1 ofrecen explicaciones conceptuales, fórmulas con KaTeX, controles interactivos, gráficas y ejercicios desarrollados. Las páginas de las fases posteriores mantienen disponibles sus rutas y muestran el estado de planificación.
+| Avanzado | Implementado | 15. Integrales Racionales; 16. Integrales Irracionales; 17. Integrales Trigonométricas Avanzadas (Productos y Secantes); 18. Sustituciones Trigonométricas; 19. Sustitución Universal; 20. Aplicaciones de la Integral; 21. Sólidos de Revolución |
+
+Todos los módulos incluyen explicaciones conceptuales, fórmulas con KaTeX, controles interactivos, gráficas y ejercicios desarrollados. Las aplicaciones definidas muestran resultados sin constante; sus primitivas sí incluyen + C.
 
 ## Tecnologías principales
 
@@ -29,20 +31,26 @@ La organización separa el catálogo académico, la presentación reutilizable y
 
 ```text
 .
-├── index.html                   # Entrada HTML y navegación alternativa a los 14 módulos
+├── index.html                   # Alternativa HTML original, conservada con sus 14 enlaces
 ├── public/                      # Recursos públicos, icono y configuración para buscadores
 ├── src/
 │   ├── components/
-│   │   ├── modules/             # Implementación independiente de cada módulo activo
+│   │   ├── modules/             # Módulos 1–6 y presentación compartida de 7–21
+│   │   │   ├── AdvancedModule.tsx     # Cuatro secciones pedagógicas
+│   │   │   ├── AdvancedVisualizer.tsx # Controles y geometría específica
+│   │   │   └── AdvancedPlot.tsx       # Gráficas con separación de singularidades
 │   │   ├── FunctionPlot.tsx     # Base gráfica reutilizable
 │   │   ├── module-ui.tsx        # Secciones, fórmulas, controles y resultados comunes
 │   │   └── Tex.tsx              # Adaptador de renderizado KaTeX
-│   ├── data/modules.ts          # Catálogo, fases y estado de los 14 módulos
+│   ├── data/modules.ts          # Catálogo y fases de los 21 módulos activos
+│   ├── data/advanced-lessons.ts # Teoría, fórmulas y 30 ejemplos de módulos 7–21
+│   ├── lib/advanced-calculus.ts # Familias, antiderivadas y aplicaciones
+│   ├── lib/advanced-calculus.test.ts # Pruebas matemáticas
 │   ├── lib/calculus.ts          # Funciones y cálculos compartidos
 │   ├── routes/
 │   │   ├── __root.tsx           # Documento, estilos globales y salida de rutas
 │   │   ├── index.tsx            # Portada y catálogo completo
-│   │   └── modulo.$id.tsx       # Ruta dinámica para /modulo/1 … /modulo/14
+│   │   └── modulo.$id.tsx       # Ruta dinámica para /modulo/1 … /modulo/21
 │   ├── router.tsx               # Configuración del enrutador
 │   └── styles.css               # Tokens visuales y estilos globales
 ├── package.json                 # Dependencias y comandos
@@ -54,7 +62,7 @@ La organización separa el catálogo académico, la presentación reutilizable y
 1. `src/data/modules.ts` define el nombre, resumen, fase y estado de cada unidad.
 2. La ruta `src/routes/modulo.$id.tsx` obtiene el módulo solicitado a partir de su número.
 3. Los módulos 1 a 6 cargan su componente correspondiente desde `src/components/modules/`.
-4. Los módulos aún no implementados conservan una página informativa y navegación anterior/siguiente.
+4. Los módulos 7–21 usan `AdvancedModule`, contenido en `advanced-lessons.ts` y modelos en `advanced-calculus.ts`. Todos disponen de navegación anterior/siguiente.
 5. Los componentes compartidos garantizan consistencia entre fórmulas, controles, resultados y ejemplos.
 
 `index.html` funciona como entrada y alternativa accesible con enlaces directos. La experiencia principal se renderiza con TanStack Start; las fórmulas de los componentes React usan el paquete local de KaTeX y la entrada HTML incluye además KaTeX por CDN.
@@ -119,17 +127,16 @@ npm run lint
 6. Ejecuta la compilación y el análisis de código antes de abrir la propuesta de cambio.
 7. Explica qué concepto matemático se añadió, qué casos se verificaron y adjunta capturas si cambia la interfaz.
 
-### Implementación de las Fases 2 y 3
+### Extensión de módulos y comprobaciones
 
-Para desarrollar uno de los módulos pendientes:
+1. Mantén intactos los componentes de los módulos 1–6 y el `index.html` alternativo.
+2. Añade la teoría, las fórmulas y dos ejemplos algebraicos a `src/data/advanced-lessons.ts`.
+3. Define familias de funciones y sus primitivas en `src/lib/advanced-calculus.ts`, con dominios seguros.
+4. Añade los controles y la geometría específica en `AdvancedVisualizer.tsx`.
+5. Registra la unidad activa en `src/data/modules.ts`; la ruta dinámica comparte la presentación.
+6. Comprueba derivadas, transformaciones de áreas y resultados definidos con `bun test src/lib/advanced-calculus.test.ts`.
 
-1. Crea `src/components/modules/ModuloN.tsx`, sustituyendo `N` por el número del módulo.
-2. Sigue la estructura pedagógica de los módulos activos: teoría, fórmula principal, visualizador, interpretación y al menos un ejemplo paso a paso.
-3. Añade los cálculos reutilizables y las funciones de muestra a `src/lib/calculus.ts`, evitando duplicarlos dentro de la vista.
-4. Importa el componente en `src/routes/modulo.$id.tsx` y asígnalo al número correspondiente.
-5. Cambia el campo `status` del módulo en `src/data/modules.ts` de `bloqueado` a `activo`.
-6. Verifica los casos límite del método. Por ejemplo, Simpson requiere un número par de subintervalos y las expresiones logarítmicas deben respetar su dominio.
-7. Actualiza la tabla de estado de este documento cuando una fase o módulo quede disponible.
+Los visualizadores de sustitución y Weierstrass comparan las variables originales y transformadas. Las curvas con polos separan sus ramas y marcan las asíntotas. El trinomio permite variar sus tres coeficientes (a positivo en la familia visualizada) y seleccionar denominador simple o radical. Por partes incluye el rectángulo de áreas complementarias; la sustitución trigonométrica añade un triángulo dinámico. Aplicaciones ofrece límites variables, arco resaltado y recta de promedio. Revolución muestra región plana, perfil de cortes y volumen para discos, arandelas y cascarones. Al seleccionar otro eje en revolución se intercambian las coordenadas de la familia de regiones; no se mantiene una región fija. No se simula una escena 3D.
 
 ### Criterios mínimos para un módulo nuevo
 
@@ -137,7 +144,7 @@ Para desarrollar uno de los módulos pendientes:
 - Cálculos numéricos coherentes con la explicación.
 - Controles con límites seguros y etiquetas claras.
 - Gráfica estable, adaptable y comprensible.
-- Ejemplo resuelto con pasos verificables.
+- Dos ejemplos resueltos con desarrollo algebraico verificable.
 - Navegación funcional desde la portada y entre módulos consecutivos.
 - Metadatos y textos en español consistentes con el resto del taller.
 

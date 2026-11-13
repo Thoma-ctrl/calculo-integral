@@ -4,7 +4,7 @@ export type ModuleMeta = {
   short: string;
   description: string;
   status: "activo" | "bloqueado";
-  phase: "Fase 1" | "Fase 2" | "Fase 3";
+  phase: "Fase 1" | "Fase 2" | "Fase 3" | "Avanzado";
 };
 
 export const MODULES: ModuleMeta[] = [
@@ -62,7 +62,7 @@ export const MODULES: ModuleMeta[] = [
     title: "Integración por Sustitución",
     short: "Cambio de variable",
     description: "Método de sustitución u y ajuste de diferenciales.",
-    status: "bloqueado",
+    status: "activo",
     phase: "Fase 2",
   },
   {
@@ -70,7 +70,7 @@ export const MODULES: ModuleMeta[] = [
     title: "Integrales Exponenciales",
     short: "Funciones exponenciales",
     description: "Integrales de e^x y a^x con sus casos compuestos.",
-    status: "bloqueado",
+    status: "activo",
     phase: "Fase 2",
   },
   {
@@ -78,15 +78,15 @@ export const MODULES: ModuleMeta[] = [
     title: "Integrales Logarítmicas",
     short: "Funciones logarítmicas",
     description: "Integrales que producen logaritmos naturales.",
-    status: "bloqueado",
+    status: "activo",
     phase: "Fase 2",
   },
   {
     id: 10,
-    title: "Integrales Trigonométricas",
+    title: "Integrales Trigonométricas (Básicas y Potencias)",
     short: "Seno, cosecante y compañía",
     description: "Identidades y potencias de funciones trigonométricas.",
-    status: "bloqueado",
+    status: "activo",
     phase: "Fase 2",
   },
   {
@@ -94,7 +94,7 @@ export const MODULES: ModuleMeta[] = [
     title: "Trigonométricas Inversas",
     short: "arcsin, arctan, arcsec",
     description: "Formas que conducen a funciones trigonométricas inversas.",
-    status: "bloqueado",
+    status: "activo",
     phase: "Fase 3",
   },
   {
@@ -102,7 +102,7 @@ export const MODULES: ModuleMeta[] = [
     title: "Hiperbólicas Inversas",
     short: "arcsinh, arccosh",
     description: "Integrales asociadas a funciones hiperbólicas inversas.",
-    status: "bloqueado",
+    status: "activo",
     phase: "Fase 3",
   },
   {
@@ -110,7 +110,7 @@ export const MODULES: ModuleMeta[] = [
     title: "Trinomio ax² + bx + c",
     short: "Completar el cuadrado",
     description: "Integrales con trinomios cuadráticos en el denominador o el radical.",
-    status: "bloqueado",
+    status: "activo",
     phase: "Fase 3",
   },
   {
@@ -118,9 +118,16 @@ export const MODULES: ModuleMeta[] = [
     title: "Integración por Partes",
     short: "Producto de funciones",
     description: "Fórmula de integración por partes y criterios de selección.",
-    status: "bloqueado",
+    status: "activo",
     phase: "Fase 3",
   },
+  {"id": 15, "title": "Integrales Racionales", "short": "Fracciones parciales", "description": "Factores lineales distintos, repetidos y cuadráticos irreducibles.", "status": "activo", "phase": "Avanzado"},
+  {"id": 16, "title": "Integrales Irracionales", "short": "Cambios algebraicos", "description": "Eliminación de radicales con sustituciones de potencias.", "status": "activo", "phase": "Avanzado"},
+  {"id": 17, "title": "Integrales Trigonométricas Avanzadas (Productos y Secantes)", "short": "Potencias y frecuencias", "description": "Productos de tangentes, secantes, cotangentes, cosecantes y ondas.", "status": "activo", "phase": "Avanzado"},
+  {"id": 18, "title": "Sustituciones Trigonométricas", "short": "Triángulos y radicales", "description": "Cambios con seno, tangente y secante y triángulo de referencia.", "status": "activo", "phase": "Avanzado"},
+  {"id": 19, "title": "Sustitución Universal", "short": "Cambio de Weierstrass", "description": "Transformación racional con t = tan(x/2).", "status": "activo", "phase": "Avanzado"},
+  {"id": 20, "title": "Aplicaciones de la Integral", "short": "Longitud y valor promedio", "description": "Longitud de arco y valor promedio con límites variables.", "status": "activo", "phase": "Avanzado"},
+  {"id": 21, "title": "Sólidos de Revolución", "short": "Discos, arandelas y cascarones", "description": "Región plana, cortes y volumen alrededor de los ejes X e Y.", "status": "activo", "phase": "Avanzado"},
 ];
 
 export function getModule(id: number) {

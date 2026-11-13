@@ -1,5 +1,5 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { ArrowLeft, ChevronLeft, ChevronRight, Lock } from "lucide-react";
+import { ArrowLeft, ChevronLeft, ChevronRight } from "lucide-react";
 import { getModule, MODULES } from "@/data/modules";
 import { Modulo1 } from "@/components/modules/Modulo1";
 import { Modulo2 } from "@/components/modules/Modulo2";
@@ -7,6 +7,7 @@ import { Modulo3 } from "@/components/modules/Modulo3";
 import { Modulo4 } from "@/components/modules/Modulo4";
 import { Modulo5 } from "@/components/modules/Modulo5";
 import { Modulo6 } from "@/components/modules/Modulo6";
+import { AdvancedModule } from "@/components/modules/AdvancedModule";
 
 export const Route = createFileRoute("/modulo/$id")({
   head: ({ params }) => {
@@ -15,7 +16,7 @@ export const Route = createFileRoute("/modulo/$id")({
       ? `Módulo ${mod.id}: ${mod.title} — Cálculo Integral Interactivo`
       : "Módulo no encontrado — Cálculo Integral Interactivo";
     const description = mod
-      ? `${mod.description} ${mod.status === "activo" ? "Incluye visualizador interactivo y ejemplos resueltos paso a paso." : "Contenido programado para la Fase 2/3."}`
+      ? `${mod.description} Incluye visualizador interactivo y ejemplos resueltos paso a paso.`
       : "El módulo solicitado no existe en esta plataforma de Cálculo Integral.";
     return {
       meta: [
@@ -38,7 +39,7 @@ function ModuloPage() {
 
   if (!mod) {
     return (
-      <Shell title="Módulo no encontrado" subtitle="Revisa el número del módulo (1 a 14)." id={0}>
+      <Shell title="Módulo no encontrado" subtitle="Revisa el número del módulo (1 a 21)." id={0}>
         <div className="paper-card p-8 text-center">
           <p className="text-sm text-muted-foreground">
             No existe un módulo con el identificador «{id}».
@@ -65,34 +66,13 @@ function ModuloPage() {
     ) : num === 6 ? (
       <Modulo6 />
     ) : (
-      <Placeholder phase={mod.phase} />
+      <AdvancedModule key={num} id={num} />
     );
 
   return (
     <Shell title={mod.title} subtitle={mod.short} id={mod.id}>
       {content}
     </Shell>
-  );
-}
-
-function Placeholder({ phase }: { phase: string }) {
-  return (
-    <div className="paper-card flex flex-col items-center px-6 py-16 text-center">
-      <span className="flex size-12 items-center justify-center rounded-full bg-secondary">
-        <Lock className="size-5 text-muted-foreground" />
-      </span>
-      <h2 className="mt-5 text-2xl font-semibold">Próximamente - Fase 2/3</h2>
-      <p className="mt-2 max-w-md text-sm text-muted-foreground">
-        Este módulo está planificado para la {phase}. La teoría, los visualizadores y los ejemplos
-        resueltos se publicarán en la siguiente etapa del proyecto.
-      </p>
-      <Link
-        to="/"
-        className="mt-6 inline-flex items-center gap-2 rounded-md bg-primary px-4 py-2 text-sm font-semibold text-primary-foreground transition-colors hover:bg-primary/90"
-      >
-        <ArrowLeft className="size-4" /> Volver a los módulos
-      </Link>
-    </div>
   );
 }
 
