@@ -11,7 +11,6 @@ El taller está organizado en **21 módulos completos y activos**. Los módulos 
 | Fase 1 | Implementada | 1. Sumas de Riemann; 2. Regla del Trapecio; 3. Regla del Punto Medio; 4. Regla de Simpson; 5. Integral Definida y Área bajo la Curva; 6. Integración Directa |
 | Fase 2 | Implementada | 7. Integración por Sustitución; 8. Integrales Exponenciales; 9. Integrales Logarítmicas; 10. Integrales Trigonométricas (Básicas y Potencias) |
 | Fase 3 | Implementada | 11. Trigonométricas Inversas; 12. Hiperbólicas Inversas; 13. Trinomio `ax² + bx + c`; 14. Integración por Partes |
-
 | Avanzado | Implementado | 15. Integrales Racionales; 16. Integrales Irracionales; 17. Integrales Trigonométricas Avanzadas (Productos y Secantes); 18. Sustituciones Trigonométricas; 19. Sustitución Universal; 20. Aplicaciones de la Integral; 21. Sólidos de Revolución |
 
 Todos los módulos incluyen explicaciones conceptuales, fórmulas con KaTeX, controles interactivos, gráficas y ejercicios desarrollados. Las aplicaciones definidas muestran resultados sin constante; sus primitivas sí incluyen + C.
