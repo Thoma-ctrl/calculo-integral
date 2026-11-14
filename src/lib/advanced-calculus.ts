@@ -100,7 +100,7 @@ export function curveModel(id: number, mode: number, p: Parameters): CurveModel 
     case 20: f=mode===0 ? x=>a*x*x+b : x=>a*x+b; F=mode===0 ? x=>a*x**3/3+b*x : x=>a*x*x/2+b*x; domain=[0,4]; latex=mode===0 ? String.raw`f(x)=ax^2+b` : String.raw`f(x)=ax+b`; primitive=mode===0 ? String.raw`F(x)=ax^3/3+bx+C` : String.raw`F(x)=ax^2/2+bx+C`; break;
     case 21: f=x=>a*x; F=x=>a*x*x/2; domain=[0,2]; latex=String.raw`R(t)=at,\quad r(t)=bat\ (0\le b<1)`; primitive=String.raw`\text{Discos: }r=0;\quad\text{Arandelas: }r=bR;\quad\text{Cascarones: }h=R-r`; break;
   }
-  return { f, F:x=>F(x)+C, domain, latex, primitive, note, poles };
+  return { f, F:x=>F(x)+C, domain, latex, primitive, note, ...(poles ? { poles } : {}) };
 }
 export function applicationMetrics(p: Parameters, mode: number) {
   const f=mode===0 ? (x:number)=>p.a*x*x+p.b : (x:number)=>p.a*x+p.b;
